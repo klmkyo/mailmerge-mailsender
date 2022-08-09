@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Example {
+  id String @id @default(cuid())
+}
+
+model GmailSettings {
+  id String @id @default(cuid())
+
+  // smtp settings
+  email        String
+  refreshToken String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+}
+
+// Contact in an address book
+model Contact {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  email     String
+  nickName  String?
+  tags      String[]
+
+  hidden Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  Email     Email[]
+
+  @@unique([email, userId])
+}
+
+model Email {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  subject String
+  body    String
+  // eg. dropbox, gdrive...
+  tags    String[]
+
+  contactId String
+  contact   Contact @relation(fields: [contactId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  toBeSentAt DateTime?
+  toBeSentTo String
+  sentAt     DateTime?
+  // in case contact is deleted, we should keep the email
+  sentTo     String?
+
+  EmailVisit EmailVisit[]
+}
+
+model EmailVisit {
+  id String @id @default(cuid())
+
+  emailId     String
+  email       Email  @relation(fields: [emailId], references: [id])
+  requestData Json?
+  seenByUser  Boolean @default(false)
+
+  visitedAt DateTime @default(now())
+}
+
+// email template model
+model EmailTemplate {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  subject String
+  body    String
+  tags    String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+// Necessary for Next auth
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  Email         Email[]
+  EmailTemplate EmailTemplate[]
+  Contact       Contact[]
+  GmailSettings GmailSettings[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
