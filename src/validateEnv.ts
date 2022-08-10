@@ -14,7 +14,9 @@ const serverSchema = z.object({
   DATABASE_URL: z.string().url(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
-  DEPLOY_URL: z.string().url()
+  DEPLOY_URL: z.string().url(),
+  TELEGRAM_BOT_TOKEN: z.string(),
+  TELEGRAM_CHAT_ID: z.string(),
 });
 
 export const validateEnv = (): void => {

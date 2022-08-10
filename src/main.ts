@@ -1,11 +1,19 @@
 import { prisma } from "./prisma.js";
 import {sendUnsentEmails} from "./mail.js";
 import { validateEnv } from "./validateEnv.js";
+import TelegramBot from "node-telegram-bot-api";
+
+const telegram = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, {polling: false});
 
 const INTERVAL = 1000 * 15; // 15 seconds
 
 const loop = async () => {
-  await sendUnsentEmails()
+  try{
+    await sendUnsentEmails()
+  } catch (e) {
+    console.error(e);
+    telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, JSON.stringify(e));
+  }
   console.log(`\n⏳ Waiting ${INTERVAL / 1000} seconds...\n`);
   setTimeout(() => loop(), INTERVAL);
 }
@@ -15,7 +23,14 @@ async function main() {
   console.log("✅ Environment variables are valid");
   console.log("🚀 Starting mailer...\n");
 
-  await loop();
+  telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, "🚀 Starting mailer...");
+
+  try{
+    await loop();
+  } catch (e) {
+    console.error(e);
+    telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, JSON.stringify(e));
+  }
 }
 
 main()
