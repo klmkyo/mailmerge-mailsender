@@ -10,7 +10,7 @@ RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 # where available (npm@5+)
 COPY package*.json pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile
 # If you are building your code for production
 # RUN npm ci --only=production
 
