@@ -11,6 +11,7 @@ RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 COPY package*.json pnpm-lock.yaml tsconfig.json ./
 
 RUN pnpm install --frozen-lockfile
+RUN pnpm prisma generate
 # If you are building your code for production
 # RUN npm ci --only=production
 
