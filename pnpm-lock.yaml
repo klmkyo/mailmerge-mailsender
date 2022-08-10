@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@prisma/client': ^4.2.0
+  '@prisma/client': ^4.2.1
   '@swc/core': ^1.2.224
   '@swc/helpers': ^0.4.3
   '@types/node': ^18.6.5
@@ -10,18 +10,19 @@ specifiers:
   eslint: ^8.21.0
   node-telegram-bot-api: ^0.58.0
   nodemailer: ^6.7.7
-  prisma: ^4.2.0
+  prisma: ^4.2.1
   regenerator-runtime: ^0.13.9
   ts-node: ^10.9.1
   typescript: ^4.7.4
-  zod: ^3.17.10
+  zod: ^3.18.0
 
 dependencies:
-  '@prisma/client': 4.2.0_prisma@4.2.0
+  '@prisma/client': 4.2.1_prisma@4.2.1
   node-telegram-bot-api: 0.58.0
   nodemailer: 6.7.7
+  prisma: 4.2.1
   ts-node: 10.9.1_paho23ximqw2pctlxth65gv7ji
-  zod: 3.17.10
+  zod: 3.18.0
 
 devDependencies:
   '@swc/core': 1.2.224
@@ -30,7 +31,6 @@ devDependencies:
   '@types/node-telegram-bot-api': 0.57.1
   '@types/nodemailer': 6.4.5
   eslint: 8.21.0
-  prisma: 4.2.0
   regenerator-runtime: 0.13.9
   typescript: 4.7.4
 
@@ -116,8 +116,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/client/4.2.0_prisma@4.2.0:
-    resolution: {integrity: sha512-Q/X8fi1UBufCrkdLk188sC/roiGxEm1V3qU4uEP5SyleO5n2A+FyC62S7+4I0hu57CU3c7Ls3YjqPiZyTHVGOw==}
+  /@prisma/client/4.2.1_prisma@4.2.1:
+    resolution: {integrity: sha512-PZBkY60+k5oix+e6IUfl3ub8TbRLNsPLdfWrdy2eh80WcHTaT+/UfvXf/B7gXedH7FRtbPFHZXk1hZenJiJZFQ==}
     engines: {node: '>=14.17'}
     requiresBuild: true
     peerDependencies:
@@ -127,16 +127,17 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.2.0-33.2920a97877e12e055c1333079b8d19cee7f33826
-      prisma: 4.2.0
+      prisma: 4.2.1
     dev: false
 
   /@prisma/engines-version/4.2.0-33.2920a97877e12e055c1333079b8d19cee7f33826:
     resolution: {integrity: sha512-tktkqdiwqE4QhmE088boPt+FwPj1Jub/zk+5F6sEfcRHzO5yz9jyMD5HFVtiwxZPLx/8Xg9ElnuTi8E5lWVQFQ==}
     dev: false
 
-  /@prisma/engines/4.2.0:
-    resolution: {integrity: sha512-tefRwCVDwLqk0WrBLErYR26uKKxzLSlKvRyADFiQn/fizJhqk9nxMXH8F6SE4w6r/szUQTzIJ4vheJKQ4dYKpw==}
+  /@prisma/engines/4.2.1:
+    resolution: {integrity: sha512-0KqBwREUOjBiHwITsQzw2DWfLHjntvbqzGRawj4sBMnIiL5CXwyDUKeHOwXzKMtNr1rEjxEsypM14g0CzLRK3g==}
     requiresBuild: true
+    dev: false
 
   /@swc/core-android-arm-eabi/1.2.224:
     resolution: {integrity: sha512-viVOYrhSqNxdDOCNu2UUfiAK0qjkmk/fB9mObdSb+48JlHv4kYBnSLjaIhj0NlXCsxgetH7QFbjrKXRJ+gpHqw==}
@@ -537,7 +538,7 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
     dev: false
 
   /debug/4.3.4:
@@ -1259,6 +1260,11 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: true
+
+  /ms/2.1.3:
+    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+    dev: false
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
@@ -1383,13 +1389,14 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prisma/4.2.0:
-    resolution: {integrity: sha512-EswC2+mFi2oKQ/IDVkokDxwAsuiuYH4gKGkNNMAQ+86f3qwOo4tiVubCRxrQp5d61F+Yf+30f8Sv0zwWMnj0XQ==}
+  /prisma/4.2.1:
+    resolution: {integrity: sha512-HuYqnTDgH8atjPGtYmY0Ql9XrrJnfW7daG1PtAJRW0E6gJxc50lY3vrIDn0yjMR3TvRlypjTcspQX8DT+xD4Sg==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.2.0
+      '@prisma/engines': 4.2.1
+    dev: false
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -1781,6 +1788,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod/3.17.10:
-    resolution: {integrity: sha512-IHXnQYQuOOOL/XgHhgl8YjNxBHi3xX0mVcHmqsvJgcxKkEczPshoWdxqyFwsARpf41E0v9U95WUROqsHHxt0UQ==}
+  /zod/3.18.0:
+    resolution: {integrity: sha512-gwTm8RfUCe8l9rDwN5r2A17DkAa8Ez4Yl4yXqc5VqeGaXaJahzYYXbTwvhroZi0SNBqTwh/bKm2N0mpCzuw4bA==}
     dev: false
