@@ -1,6 +1,6 @@
+import { Email } from "@prisma/client";
 import nodemailer from "nodemailer";
 import { MailOptions } from "nodemailer/lib/smtp-transport";
-import { Email } from "@prisma/client";
 import { prisma } from "./prisma.js";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
