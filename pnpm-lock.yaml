@@ -20,7 +20,6 @@ dependencies:
   '@prisma/client': 4.2.1_prisma@4.2.1
   node-telegram-bot-api: 0.58.0
   nodemailer: 6.7.7
-  prisma: 4.2.1
   ts-node: 10.9.1_paho23ximqw2pctlxth65gv7ji
   zod: 3.18.0
 
@@ -31,6 +30,7 @@ devDependencies:
   '@types/node-telegram-bot-api': 0.57.1
   '@types/nodemailer': 6.4.5
   eslint: 8.21.0
+  prisma: 4.2.1
   regenerator-runtime: 0.13.9
   typescript: 4.7.4
 
@@ -137,7 +137,6 @@ packages:
   /@prisma/engines/4.2.1:
     resolution: {integrity: sha512-0KqBwREUOjBiHwITsQzw2DWfLHjntvbqzGRawj4sBMnIiL5CXwyDUKeHOwXzKMtNr1rEjxEsypM14g0CzLRK3g==}
     requiresBuild: true
-    dev: false
 
   /@swc/core-android-arm-eabi/1.2.224:
     resolution: {integrity: sha512-viVOYrhSqNxdDOCNu2UUfiAK0qjkmk/fB9mObdSb+48JlHv4kYBnSLjaIhj0NlXCsxgetH7QFbjrKXRJ+gpHqw==}
@@ -1396,7 +1395,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 4.2.1
-    dev: false
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
