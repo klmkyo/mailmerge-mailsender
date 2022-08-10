@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:18
+FROM node:16
 # Create app directory
 WORKDIR /app
 
@@ -24,5 +24,5 @@ EXPOSE 5432
 # port for https (telegram bot)
 EXPOSE 443
 
-ENV NODE_ENV=production 
+ENV NODE_ENV=production
 CMD [ "npm", "run", "start" ]
