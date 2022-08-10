@@ -4,13 +4,18 @@ import { validateEnv } from "./validateEnv.js";
 
 const INTERVAL = 1000 * 15; // 15 seconds
 
+const loop = async () => {
+  await sendUnsentEmails()
+  console.log(`\n⏳ Waiting ${INTERVAL / 1000} seconds...\n`);
+  setTimeout(() => loop(), INTERVAL);
+}
+
 async function main() {
   validateEnv();
+  console.log("✅ Environment variables are valid");
+  console.log("🚀 Starting mailer...\n");
 
-  setInterval(async () => {
-    await sendUnsentEmails();
-    console.log(`Waiting ${INTERVAL / 1000} seconds...`);
-  }, INTERVAL);
+  await loop();
 }
 
 main()

@@ -25,6 +25,9 @@ export const addTracker = (email: Email) => {
 }
 
 export async function sendUnsentEmails() {
+
+  console.log("📬 Sending unsent emails...");
+
   const unsentEmails = await prisma.email.findMany({
     where: {
       toBeSentAt: {
@@ -90,6 +93,16 @@ export async function sendUnsentEmails() {
         }
       };
 
+      // check if the email has not been sent one last time
+      const dbEmail = await prisma.email.findUniqueOrThrow({
+        where: {
+          id: email.id,
+        }
+      });
+      if(dbEmail.sentAt || dbEmail.sentTo) {
+        throw "Spróbowano wysłać wysłane już maile, co nie powinno się zdarzyć (Check II stopnia)";
+      }
+
       // update the email to indicate it has been sent
       // do it before the email is actually sent (better safe than sorry)
       await prisma.email.update({
@@ -110,4 +123,5 @@ export async function sendUnsentEmails() {
   });
 
   await Promise.all(sendPromises);
+  console.log("📬 All emails sent");
 }
