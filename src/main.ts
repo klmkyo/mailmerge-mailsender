@@ -3,7 +3,17 @@ import {sendUnsentEmails} from "./mail.js";
 import { validateEnv } from "./validateEnv.js";
 import TelegramBot from "node-telegram-bot-api";
 
-const telegram = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, {polling: false});
+const telegram = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, {polling: true});
+
+telegram.on('message', (msg) => {
+  const chatId = msg.chat.id;
+
+  const text = msg.text;
+  if (text?.toLowerCase() === "ping") {
+    telegram.sendMessage(chatId, 'pong');
+  }
+});
+
 
 const INTERVAL = 1000 * 15; // 15 seconds
 
