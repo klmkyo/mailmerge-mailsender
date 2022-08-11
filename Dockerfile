@@ -19,6 +19,8 @@ RUN npm install --frozen-lockfile
 # Bundle app source
 COPY . .
 
+RUN npm build
+
 # postgres port
 EXPOSE 5432
 # port for https (telegram bot)
