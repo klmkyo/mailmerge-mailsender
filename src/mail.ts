@@ -2,6 +2,7 @@ import { Email } from "@prisma/client";
 import nodemailer from "nodemailer";
 import { MailOptions } from "nodemailer/lib/smtp-transport";
 import { prisma } from "./prisma.js";
+import { telegram } from "./telegram.js";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
@@ -45,6 +46,11 @@ export async function sendUnsentEmails() {
     return;
   } else {
     console.log(`📬 Sending ${unsentEmails.length} unsent emails...`);
+
+    // quietly notify about the emails that are being sent
+    telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, `📬 Sending ${unsentEmails.length} unsent emails...`, {
+      disable_notification: true,
+    });
   }
 
   // double check: if there is an email that has already been sent, throw an error
