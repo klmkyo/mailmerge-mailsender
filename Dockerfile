@@ -19,7 +19,7 @@ RUN npm install --frozen-lockfile
 # Bundle app source
 COPY . .
 
-RUN npm build
+RUN npm run build
 
 # postgres port
 EXPOSE 5432
