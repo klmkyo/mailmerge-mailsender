@@ -11,7 +11,7 @@ telegram.on('message', (msg) => {
   const text = msg.text;
   if (text?.toLowerCase() === "ping") {
     console.log("🏓 Pong!");
-    telegram.sendMessage(chatId, 'pong');
+    telegram.sendMessage(chatId, "🏓 Pong!");
   }
 });
 
