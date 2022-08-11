@@ -5,6 +5,7 @@ import TelegramBot from "node-telegram-bot-api";
 
 const telegram = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, {polling: true});
 
+// respond to pings, to know if the bot is alive
 telegram.on('message', (msg) => {
   const chatId = msg.chat.id;
 
@@ -15,6 +16,14 @@ telegram.on('message', (msg) => {
   }
 });
 
+/* Catch errors that are not caught by the try/catch blocks. */
+process.on('uncaughtException', function (e) {
+  console.error(e.stack);
+  telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, JSON.stringify(e));
+
+  // exit
+  process.exit(1);
+});
 
 const INTERVAL = 1000 * 15; // 15 seconds
 
