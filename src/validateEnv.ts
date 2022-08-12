@@ -17,6 +17,7 @@ const serverSchema = z.object({
   DEPLOY_URL: z.string().url(),
   TELEGRAM_BOT_TOKEN: z.string(),
   TELEGRAM_CHAT_ID: z.string(),
+  NODE_ENV: z.enum(["development", "production"]),
 });
 
 export const validateEnv = (): void => {

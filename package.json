@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node src/main.ts",
-    "start": "node dist/main.js",
+    "dev": "NODE_ENV=development ts-node src/main.ts",
+    "start": "NODE_ENV=production node dist/main.js",
     "postinstall": "prisma generate",
     "build": "tsc -p ."
   },

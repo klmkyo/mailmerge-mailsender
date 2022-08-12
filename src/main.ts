@@ -1,9 +1,7 @@
 import { prisma } from "./prisma.js";
 import {sendUnsentEmails} from "./mail.js";
 import { validateEnv } from "./validateEnv.js";
-import TelegramBot from "node-telegram-bot-api";
-
-const telegram = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, {polling: true});
+import { telegram } from "./telegram.js";
 
 // respond to pings, to know if the bot is alive
 telegram.on('message', (msg) => {
