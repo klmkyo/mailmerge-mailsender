@@ -17,7 +17,7 @@ telegram.on('message', (msg) => {
 /* Catch errors that are not caught by the try/catch blocks. */
 process.on('uncaughtException', function (e) {
   console.error(e.stack);
-  telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, JSON.stringify(e));
+  telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, "Uncaught Error!: " + JSON.stringify(e));
 
   // exit
   process.exit(1);
