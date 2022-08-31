@@ -142,12 +142,13 @@ export async function sendUnsentEmails() {
           },
           data: {
             sentAt: null,
-            sentTo: null,
+            sentTo: null
           },
         });
 
         console.log(`! Failed to send mail from ${senderEmail} to ${email.toBeSentTo} | ${email.subject} | ${email.id}...`);
 
+        telegram.sendMessage(process.env.TELEGRAM_CHAT_ID!, JSON.stringify(e));
         throw new Error(JSON.stringify(e))
       }
 
