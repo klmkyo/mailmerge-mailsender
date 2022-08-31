@@ -128,9 +128,28 @@ export async function sendUnsentEmails() {
           sentTo: email.toBeSentTo,
         },
       });
+
       console.log(`Sending email from ${senderEmail} to ${email.toBeSentTo} | ${email.subject} | ${email.id}...`);
 
-      await smtpTransport.sendMail(mailOptions);
+      try {
+        await smtpTransport.sendMail(mailOptions);
+      }
+      catch (e) {
+
+        await prisma.email.update({
+          where: {
+            id: email.id,
+          },
+          data: {
+            sentAt: null,
+            sentTo: null,
+          },
+        });
+
+        console.log(`! Failed to send mail from ${senderEmail} to ${email.toBeSentTo} | ${email.subject} | ${email.id}...`);
+
+        throw new Error(JSON.stringify(e))
+      }
 
       console.log(` - sent!`);
     }
